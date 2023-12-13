@@ -1,9 +1,11 @@
 //This will not be a model, but rather will be used as
 //the reaction field's subdocument schema in the Thought model.
 
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+const thoughtSchema = require('./Thought');
 
-// Schema to create Student model
+const { Schema } = mongoose;
+
 const reactionSchema = new Schema({
   reactionId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -22,15 +24,13 @@ const reactionSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-  },
-    toJSON: {
-      getters: true,
-      virtuals: true,
-    },
-    id: false,
   }
-);
+}, {
+  toJSON: {
+    getters: true,
+    virtuals: true,
+  },
+  id: false,
+});
 
-const Reaction = model('reaction', reactionSchema);
-
-module.exports = Reaction;
+module.exports = reactionSchema;

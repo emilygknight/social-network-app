@@ -1,4 +1,5 @@
-const { Schema, model , Types } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 // Schema to create a course model
 const userSchema = new Schema(

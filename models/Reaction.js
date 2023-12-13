@@ -2,9 +2,8 @@
 //the reaction field's subdocument schema in the Thought model.
 
 const mongoose = require('mongoose');
-const thoughtSchema = require('./Thought');
 
-const { Schema } = mongoose;
+const { Schema , Types } = mongoose;
 
 const reactionSchema = new Schema({
   reactionId: {

@@ -24,9 +24,9 @@ const userSchema = new Schema(
         message: 'Invalid email address',
       },
     },
-    thoughts: [{
+    thought: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Thought', // Reference to the Thought model
+      ref: 'thought', // Reference to the Thought model
     }],
     friends: [{
       type: mongoose.Schema.Types.ObjectId,

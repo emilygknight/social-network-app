@@ -25,7 +25,7 @@ const { User , Thought } = require('../models');
 //   ]);
 
 module.exports = {
-  // Get all reactions
+  // Get all thoughts
   async getThought(req, res) {
     try {
       const thought = await Thought.find();
@@ -44,7 +44,7 @@ module.exports = {
   // Get a single thought
   async getSingleThought(req, res) {
     try {
-      const thought = await Thought.findOne({ _id: req.params.thoughtId })
+      const thought = await Thought.findOne({ _id: req.params._id })
         .select('-__v');
 
       if (!thought) {
@@ -57,7 +57,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-  // create a new student
+  // create a new thought
   async createThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
@@ -66,18 +66,18 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Delete a student and remove them from the course
+  // Delete a thought and remove them from the user
   async deleteThought(req, res) {
     try {
-      const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
+      const thought = await Thought.findOneAndRemove({ _id: req.params._id });
 
       if (!thought) {
         return res.status(404).json({ message: 'No such thought exists' });
       }
 
       const user = await User.findOneAndUpdate(
-        { thought: req.params.thoughtId },
-        { $pull: { thought: req.params.thoughtId } },
+        { thought: req.params._id },
+        { $pull: { thought: req.params._id } },
         { new: true }
       );
 
